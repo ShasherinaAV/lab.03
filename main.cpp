@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include "histogram.h"
 
 
 using namespace std;
@@ -13,23 +14,6 @@ vector<double> input_numbers(const size_t count)
     }
 
     return result;
-
-}
-void find_minmax(const vector<double>& numbers, double& min, double& max)
-{
-    min = numbers[0];
-    max = numbers[0];
-    for(double numb: numbers)
-    {
-        if (numb < min)
-        {
-            min = numb;
-        }
-        if (numb > max)
-        {
-            max = numb;
-        }
-    }
 
 }
 
@@ -115,15 +99,15 @@ void svg_text(double left, double baseline, string text)
 }
 
 void svg_rect(double x, double y, double width, double height, string stroke = "black", string fill = "black")
- {
+{
 
- cout << "<rect x='" << x <<"' y='" << y << "' width='" << width <<"' height='" << height << "' stroke='" << stroke << "' fill='" << fill << "' />";
+    cout << "<rect x='" << x <<"' y='" << y << "' width='" << width <<"' height='" << height << "' stroke='" << stroke << "' fill='" << fill << "' />";
 }
 
 void
 show_histogram_svg(const vector<size_t>& bins)
 {
- const auto IMAGE_WIDTH = 400;
+    const auto IMAGE_WIDTH = 400;
     const auto IMAGE_HEIGHT = 300;
     const auto TEXT_LEFT = 20;
     const auto TEXT_BASELINE = 20;
