@@ -5,10 +5,10 @@ void svg_begin(double width, double height)
 {
     cout << "<?xml version='1.0' encoding='UTF-8'?>\n";
     cout << "<svg "
-    << "width='" << width << "' "
-    << "height='" << height << "' "
-    << "viewBox='0 0 " << width << " " << height << "' "
-    << "xmlns='http://www.w3.org/2000/svg'>\n";
+         << "width='" << width << "' "
+         << "height='" << height << "' "
+         << "viewBox='0 0 " << width << " " << height << "' "
+         << "xmlns='http://www.w3.org/2000/svg'>\n";
 }
 
 void svg_end()
@@ -37,13 +37,34 @@ show_histogram_svg(const vector<size_t>& bins)
     const auto TEXT_WIDTH = 50;
     const auto BIN_HEIGHT = 30;
     const auto BLOCK_WIDTH = 10;
+    double top = 0;
 
     svg_begin(IMAGE_WIDTH, IMAGE_HEIGHT);
-
-    double top = 0;
-    for (size_t bin : bins)
+    const size_t MAX_VIDTH = IMAGE_WIDTH- TEXT_WIDTH;
+    const size_t MAX_ASTERISK = 35;
+    size_t max_count = 0;
+    for (size_t count : bins)
     {
-        const double bin_width = BLOCK_WIDTH * bin;
+        if (count > max_count)
+        {
+            max_count = count;
+        }
+    }
+
+    for (size_t bin: bins)
+    {
+        double bin_factor ;
+        const bool scalling_needed = max_count > MAX_ASTERISK;
+
+        if (scalling_needed)
+        {
+            const double koeff = (double)MAX_ASTERISK / max_count;
+            bin_factor= (size_t)(bin * koeff);
+        }
+        else {bin_factor=bin;}
+
+        const double bin_width = BLOCK_WIDTH * bin_factor;
+
         svg_text(TEXT_LEFT, top + TEXT_BASELINE, to_string(bin));
         svg_rect(TEXT_WIDTH, top, bin_width, BIN_HEIGHT, "blue", "#ffeeee");
         top += BIN_HEIGHT;
