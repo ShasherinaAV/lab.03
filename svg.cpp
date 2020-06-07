@@ -1,4 +1,7 @@
 #include "svg.h"
+#include<string>
+#include<sstream>
+
 
 
 void svg_begin(double width, double height)
@@ -26,7 +29,48 @@ void svg_rect(double x, double y, double width, double height, string stroke, st
 
     cout << "<rect x='" << x <<"' y='" << y << "' width='" << width <<"' height='" << height << "' stroke='" << stroke << "' fill='" << fill << "' />";
 }
+void find_minnmaxx(const vector<size_t>&bins, size_t& minn, size_t& maxx)
+{
 
+    for (double number : bins)
+    {
+        if (number < minn)
+        {
+            minn = number;
+        }
+        if (number > maxx)
+        {
+            maxx = number;
+        }
+    }
+}
+string color_bins(const vector<size_t>&bins, size_t max_count, size_t bin)
+{
+    size_t minn = bins[0];
+    size_t maxx = bins[0];
+    find_minnmaxx(bins, minn,maxx);
+
+    ostringstream digit;
+    size_t x;
+
+
+    if (bin == minn)
+    {
+        x = 9;
+    }
+    else if (bin == maxx)
+    {
+        x = 1;
+    }
+    else
+    {
+        x =10 - (bin * 9) / max_count;
+    }
+    digit << x;
+    string color = digit.str();
+    color = color + color + color;
+    return color;
+}
 void
 show_histogram_svg(const vector<size_t>& bins)
 {
@@ -53,6 +97,9 @@ show_histogram_svg(const vector<size_t>& bins)
 
     for (size_t bin: bins)
     {
+        string color = color_bins(bins, max_count, bin);
+        cout << color << endl;
+
         double bin_factor ;
         const bool scalling_needed = max_count > MAX_ASTERISK;
 
@@ -61,12 +108,17 @@ show_histogram_svg(const vector<size_t>& bins)
             const double koeff = (double)MAX_ASTERISK / max_count;
             bin_factor= (size_t)(bin * koeff);
         }
-        else {bin_factor=bin;}
+        else
+        {
+            bin_factor=bin;
+        }
 
         const double bin_width = BLOCK_WIDTH * bin_factor;
 
+
+
         svg_text(TEXT_LEFT, top + TEXT_BASELINE, to_string(bin));
-        svg_rect(TEXT_WIDTH, top, bin_width, BIN_HEIGHT, "blue", "#ffeeee");
+        svg_rect(TEXT_WIDTH, top, bin_width, BIN_HEIGHT, "mistyrose", "#"+color);
         top += BIN_HEIGHT;
     }
 

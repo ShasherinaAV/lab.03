@@ -1,5 +1,5 @@
 #include "histogram.h"
-
+#include "svg.h"
 #include <cassert>
 
 void
@@ -43,6 +43,13 @@ void test_emptymassif()
     assert(min == 0);
     assert(max == 0);
 }
+void test_color()
+{
+    vector <size_t> bins={2,4,6};
+    assert(color_bins(bins, 6, bins[0])=="999");
+    assert(color_bins(bins, 6, bins[1])=="444");
+    assert(color_bins(bins, 6, bins[2])=="111");
+}
 int
 main()
 {
@@ -51,4 +58,6 @@ main()
     test_same();
     test_onenum();
     test_emptymassif();
+    test_color();
+
 }
