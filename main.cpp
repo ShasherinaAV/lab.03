@@ -1,8 +1,14 @@
 #include <iostream>
 #include <vector>
+<<<<<<< HEAD
 #include <curl/curl.h>
 #include <sstream>
 #include <string>
+=======
+#include <windows.h>
+#include <string>
+#include<sstream>
+>>>>>>> lab04-2
 #include "histogram.h"
 #include "svg.h"
 
@@ -157,5 +163,11 @@ int main(int argc, char* argv[])
 const auto bins = make_histogram(input);
 show_histogram_svg(bins);
 
+<<<<<<< HEAD
 return 0;
+=======
+
+
+    return 0;
+>>>>>>> lab04-2
 }

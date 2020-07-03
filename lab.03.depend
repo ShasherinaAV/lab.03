@@ -1,4 +1,5 @@
 # depslib dependency file v1.0
+<<<<<<< HEAD
 1593722884 source:c:\users\79172\desktop\lab.03\lab.03\main.cpp
 	<iostream>
 	<vector>
@@ -15,10 +16,26 @@
 	<vector>
 
 1593445871 c:\users\79172\desktop\lab.03\lab.03\svg.h
+=======
+1593445871 source:c:\users\79172\desktop\lab.03\lab.03\histogram.cpp
+	"histogram.h"
+
+1593725184 c:\users\79172\desktop\lab.03\lab.03\histogram.h
+	<vector>
+
+1593750081 source:c:\users\79172\desktop\lab.03\lab.03\svg.cpp
+	"svg.h"
+	<windows.h>
+	<string>
+	<sstream>
+
+1593750081 c:\users\79172\desktop\lab.03\lab.03\svg.h
+>>>>>>> lab04-2
 	<iostream>
 	<vector>
 	<string>
 
+<<<<<<< HEAD
 1593445871 source:c:\users\79172\desktop\lab.03\lab.03\svg.cpp
 	"svg.h"
 
@@ -60,4 +77,14 @@
 	"curl.h"
 
 1593284634 c:\users\79172\desktop\lab.03\lab.03\curl\include\curl\typecheck-gcc.h
+=======
+1593749916 source:c:\users\79172\desktop\lab.03\lab.03\main.cpp
+	<iostream>
+	<vector>
+	<windows.h>
+	<string>
+	<sstream>
+	"histogram.h"
+	"svg.h"
+>>>>>>> lab04-2
 
